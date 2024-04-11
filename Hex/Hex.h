@@ -68,6 +68,8 @@ public:
 	int ring() const;
 
 	Pixel getCenter(int outerRadius, int innerRadius); 
+
+	int hashCode();
 };
 
 Hex operator*(int factor, const Hex& hex);

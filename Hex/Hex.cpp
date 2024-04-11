@@ -320,7 +320,16 @@ int Hex::ring() const
 
 Pixel Hex::getCenter(int outerRadius, int innerRadius)
 {
-	return Pixel();
+	int x = pCoord * outerRadius * 1.5;
+	int y = (qCoord - rCoord) * innerRadius;
+	return Pixel(x, y);
+}
+
+int Hex::hashCode()
+{
+	constexpr int BITS_PER_HALF_INT = sizeof(int) * 8 / 2;
+	constexpr int MAX_HALF_INT = ~((~0U) << BITS_PER_HALF_INT);
+	return ((pCoord & MAX_HALF_INT) << BITS_PER_HALF_INT) | (qCoord & MAX_HALF_INT);
 }
 
 Hex operator*(int factor, const Hex& hex)
